@@ -87,7 +87,7 @@ reg_new2   <- lm(lwage~ I(2*univ+jc)+univ+exper, df)
 summary(reg_new1)
 summary(reg_new2)
 
-stargazer(reg, reg_new, reg_new1, reg_new2, type="text")
+stargazer(reg, reg_new1, reg_new2, type="text")
 
 
 #------------------------------------------------------------------------------------
@@ -97,7 +97,7 @@ linearHypothesis(reg, c("jc-univ=0"))
 
 
 # exercise: in the following regression, test the hypothesis that the father education has a 
-# higher impact of your future salary than mothers education?
+# higher impact on your future salary than mothers education?
 
 reg <- lm(log(wage) ~ IQ + educ + exper + age + feduc + meduc, wage2)
 summary(reg)

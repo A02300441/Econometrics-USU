@@ -87,20 +87,25 @@ plot(effect("exper",MRM_dummy_dep))
 predict(MRM_dummy_dep)[1:6]
 mroz$inlf[1:6]
 
+y_hat <- ifelse(predict(MRM_dummy_dep) > 0.5, 1, 0)
 
-(Percent_correctly_predicted_1       <- sum(predict(MRM_dummy_dep) > 0.5 & mroz$inlf==1) / sum(mroz$inlf==1))
-(Percent_correctly_predicted_0       <- sum(predict(MRM_dummy_dep) < 0.5 & mroz$inlf==0) / sum(mroz$inlf==0))
-(Percent_correctly_predicted_overall <- (sum(predict(MRM_dummy_dep) > 0.5 & mroz$inlf==1) + sum(predict(MRM_dummy_dep) < 0.5 & mroz$inlf==0)) / length(mroz$inlf)) 
-
-
-
+(Percent_correctly_predicted_1       <- sum(y_hat ==1 & mroz$inlf==1) / sum(mroz$inlf==1))
+(Percent_correctly_predicted_0       <- sum(y_hat ==0 & mroz$inlf==0) / sum(mroz$inlf==0))
+(Percent_correctly_predicted_overall <- (sum(y_hat ==1 & mroz$inlf==1) + sum(y_hat ==0 & mroz$inlf==0)) / length(mroz$inlf)) 
 
 
-# or alternatively
-Confusion_Matrix <- table(mroz$inlf, predict(MRM_dummy_dep) > 0.5)
-prop.table(Confusion_Matrix,margin=1)
 
-(overall_correct_predictions <- (203+350) / (203+350+122+78))
+
+
+# or alternatively (machine learning language)
+
+y = mroz$inlf
+y_hat <- ifelse(predict(MRM_dummy_dep) > 0.5, 1, 0)
+
+Confusion_Matrix <- table(y, y_hat)
+prop.table(Confusion_Matrix,margin=1) # this gives you the recalls 
+
+(accuracy                    <- (203+350) / (203+350+122+78))
 
 
 

@@ -1,3 +1,5 @@
+# Prof Pedram Jahangiry
+
 library(wooldridge)
 library(stargazer)
 library(dplyr)
@@ -7,7 +9,7 @@ library(MASS)
 
 MRM_1 <- lm(wage ~ educ + exper + tenure, wage1)
 
-stargazer(MRM_1, MRM_2, type = "text")
+stargazer(MRM_1, type = "text")
 
 # let's explore assumption 5 and 6 
 resid1 <- resid(MRM_1)
@@ -30,7 +32,6 @@ plot(wage1$educ, resid2)
 
 # ------------------------------------------
 
-hist(resid1)
 
 
 
